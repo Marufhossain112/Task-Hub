@@ -1,4 +1,16 @@
-.navbar-container{
-padding-left: 3%;
-padding-right: 3%;
+.navbar-container {
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.nav-items {
+    flex-direction: column;
+}
+
+@media (min-width: 992px) {
+    .nav-items {
+        flex-direction: row;
+    }
+
+
 }

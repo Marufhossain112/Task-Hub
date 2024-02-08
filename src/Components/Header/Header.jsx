@@ -13,7 +13,7 @@ const Header = () => {
                     </Link>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item d-flex ">
+                            <li className="nav-item d-flex nav-items">
                                 <Link className="nav-link active" aria-current="page" to={'/'}>
                                     Tasks
                                 </Link>

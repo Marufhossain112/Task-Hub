@@ -50,7 +50,7 @@ const EditTask = ({ editTask, updateTasks }) => {
     return (
         <div>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
