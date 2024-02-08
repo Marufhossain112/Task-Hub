@@ -5,7 +5,7 @@ import { PROTOCOL_HOST } from "../../utils/url";
 import toast from "react-hot-toast";
 const CreateTask = () => {
     const [priority, setPriority] = useState("Set priority");
-    
+
     const {
         register,
         handleSubmit,
@@ -42,7 +42,7 @@ const CreateTask = () => {
     };
     return (
         <>
-         
+
 
             <h3 className="text-center mt-5">Create task</h3>
             <div className="container create-task-container">
@@ -62,20 +62,24 @@ const CreateTask = () => {
                     {/* title ends*/}
 
                     {/* Priority */}
-                    <div className="dropdown dropend">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {priority}
-                        </button>
-                        <ul className="dropdown-menu">
-                            <li><a className="dropdown-item" onClick={() => handlePrioritySelect("Low")}>Low</a></li>
-                            <li><a className="dropdown-item" onClick={() => handlePrioritySelect("Medium")}>Medium</a></li>
-                            <li><a className="dropdown-item" onClick={() => handlePrioritySelect("High")}>High</a></li>
-                        </ul>
+                    <div className="mb-3">
+                        <label htmlFor="set-priority" className="col-form-label"> Set priority</label>
+                        <div className="dropdown ">
+                            <button className="btn btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {priority}
+                            </button>
+                            <ul className="dropdown-menu dropdown-menu-lg-end">
+                                <li><a className="dropdown-item" onClick={() => handlePrioritySelect("Low")}>Low</a></li>
+                                <li><a className="dropdown-item" onClick={() => handlePrioritySelect("Medium")}>Medium</a></li>
+                                <li><a className="dropdown-item" onClick={() => handlePrioritySelect("High")}>High</a></li>
+                            </ul>
+                        </div>
                     </div>
+
 
                     {/* Priority ends*/}
 
-                    <button type="submit" className="btn btn-primary mt-2">Create</button>
+                    <button type="submit" className="btn btn-dark mt-2">Create</button>
                 </form>
             </div>
         </>

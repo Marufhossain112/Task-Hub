@@ -61,49 +61,42 @@ const EditTask = ({ editTask, updateTasks }) => {
                                     <label htmlFor="task-title" className="col-form-label">Title</label>
                                     <input type="text" className="form-control" id="task-title" defaultValue={editTask?.title}  {...register("title")} />
                                 </div>
-
                                 <div className="mb-3">
-                                    <div className="d-flex gap-2 align-items-center">
-                                        <div>
-                                            Set priority
-                                        </div>
-                                        <div className="dropdown dropend">
-                                            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {priority === 'Set priority' ? editTask?.priority : priority}
-                                            </button>
-                                            <ul className="dropdown-menu">
-                                                <li><a className={`dropdown-item ${editTask?.priority === 'Low' && 'disabled'}`} onClick={() => handlePrioritySelect("Low")}>Low</a></li>
-                                                <li><a className={`dropdown-item ${editTask?.priority === 'Medium' && 'disabled'}`} onClick={() => handlePrioritySelect("Medium")}>Medium</a></li>
-                                                <li><a className={`dropdown-item ${editTask?.priority === 'High' && 'disabled'}`} onClick={() => handlePrioritySelect("High")}>High</a></li>
-                                            </ul>
-                                        </div>
+                                    <label htmlFor="set-priority" className="col-form-label"> Set priority</label>
+                                    <div className="dropdown ">
+                                        <button className="btn btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {priority === 'Set priority' ? editTask?.priority : priority}
+                                        </button>
+                                        <ul className="dropdown-menu dropdown-menu-lg-end">
+                                            <li><a className={`dropdown-item ${editTask?.priority === 'Low' && 'disabled'}`} onClick={() => handlePrioritySelect("Low")}>Low</a></li>
+                                            <li><a className={`dropdown-item ${editTask?.priority === 'Medium' && 'disabled'}`} onClick={() => handlePrioritySelect("Medium")}>Medium</a></li>
+                                            <li><a className={`dropdown-item ${editTask?.priority === 'High' && 'disabled'}`} onClick={() => handlePrioritySelect("High")}>High</a></li>
+                                        </ul>
                                     </div>
                                 </div>
+
+
                                 <div className="mb-3">
-                                    <div className="d-flex gap-2 align-items-center">
-                                        <div>
-                                            Set status
-                                        </div>
-                                        <div className="dropdown dropend">
-                                            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {status === '' ? editTask.status : status}
-                                            </button>
-                                            <ul className="dropdown-menu">
-                                                <li><a className={`dropdown-item ${editTask?.status === 'Completed' && 'disabled'}`} onClick={() => handleStatusUpdate("Completed")}>Completed</a></li>
-                                                <li><a className={`dropdown-item ${editTask?.status === 'Not Completed' && 'disabled'}`} onClick={() => handleStatusUpdate("Not Completed")}>Not Completed</a></li>
-                                            </ul>
-                                        </div>
+                                    <label htmlFor="set-status" className="col-form-label"> Set status</label>
+                                    <div className="dropdown ">
+                                        <button className="btn btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {status === '' ? editTask.status : status}
+                                        </button>
+                                        <ul className="dropdown-menu dropdown-menu-lg-end">
+                                            <li><a className={`dropdown-item ${editTask?.status === 'Completed' && 'disabled'}`} onClick={() => handleStatusUpdate("Completed")}>Completed</a></li>
+                                            <li><a className={`dropdown-item ${editTask?.status === 'Not Completed' && 'disabled'}`} onClick={() => handleStatusUpdate("Not Completed")}>Not Completed</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Update</button>
+                                    <button type="submit" className="btn btn-dark" data-bs-dismiss="modal">Update</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 
