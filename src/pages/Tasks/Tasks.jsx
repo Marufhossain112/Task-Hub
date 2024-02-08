@@ -1,14 +1,15 @@
 import { useFetch } from "../../hooks/useFetch";
 import { PROTOCOL_HOST } from "../../utils/url";
 import { AiOutlineDelete } from "react-icons/ai";
-import { MdDelete } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa";
 import Loader from "../../Components/Loader/Loader";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import EditTask from "../../Components/EditTask/EditTask";
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
+    const [editTask, setEditTask] = useState({});
     const { data, loading } = useFetch(`${PROTOCOL_HOST}/task/all-tasks`);
     useEffect(() => {
         if (!loading) {
@@ -41,6 +42,33 @@ const Tasks = () => {
                 console.log("🚀 error", error);
             });
     };
+    const handleDelete = (taskId) => {
+        fetch(`${PROTOCOL_HOST}/task/delete-task/${taskId}`, {
+            method: "DELETE"
+        })
+            .then(response => {
+                if (response.ok) {
+                    const updatedTasks = tasks.filter(task => task._id !== taskId);
+                    setTasks(updatedTasks);
+                    toast.success('Task deleted successfully');
+                }
+            })
+            .catch(error => {
+                console.log("🚀 error", error);
+            });
+    };
+
+    const updateTasks = (taskId, updatedData) => {
+        const updatedTasks = tasks.map(task => {
+            if (task._id === taskId) {
+                return { ...task, ...updatedData };
+            }
+            return task;
+        });
+        setTasks(updatedTasks);
+    };
+
+
     if (loading) {
         return (
             <Loader />
@@ -70,21 +98,25 @@ const Tasks = () => {
                                 <tr className="text-center" key={table?._id}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{table?.title}</td>
-                                    <td className={`${table?.priority === 'High' ? 'text-danger' : table?.priority === 'Low' ? 'text-success' : table?.priority === 'Medium' ? 'text-primary' : ""} `}>{table?.priority}</td>
+                                    <td className={`${table?.priority === 'High' ? 'text-danger' :
+                                        table?.priority === 'Low' ? 'text-success' :
+                                            table?.priority === 'Medium' ? 'text-primary' : ""} `}>{table?.priority}</td>
                                     <td>{table?.status}</td>
                                     <td onClick={() => handleCompleted(table?._id)}>
                                         {
                                             table?.status === 'Not Completed' && <FaCheck />
                                         }
                                     </td>
-                                    <td ><BsPencilSquare /></td>
-                                    <td><AiOutlineDelete /></td>
+                                    <td type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setEditTask(table)}><BsPencilSquare /></td>
+                                    <td onClick={() => handleDelete(table?._id)}><AiOutlineDelete /></td>
                                 </tr>
                             ))
                         }
                     </tbody>
                 </table>
             </div >
+
+            <EditTask editTask={editTask} updateTasks={updateTasks} />
         </>
     );
 };

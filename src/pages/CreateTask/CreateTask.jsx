@@ -62,7 +62,7 @@ const CreateTask = () => {
                     {/* title ends*/}
 
                     {/* Priority */}
-                    <div className="dropdown">
+                    <div className="dropdown dropend">
                         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {priority}
                         </button>
