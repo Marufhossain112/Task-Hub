@@ -4,13 +4,18 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa";
+import Loader from "../../Components/Loader/Loader";
 const Tasks = () => {
     const { data, loading } = useFetch(`${PROTOCOL_HOST}/task/all-tasks`);
-
-    console.log("🚀 is Data got", data);
+    if (loading) {
+        return (
+            <Loader />
+        );
+    }
+    // console.log("🚀 is Data got", data);
     return (
         <>
-            <h3 className="text-center mt-5">All tasks</h3>
+            <h3 className="text-center mt-4">All tasks</h3>
             <div className="container">
                 <table className="table table-hover">
                     <thead>
@@ -31,7 +36,7 @@ const Tasks = () => {
                                 <tr className="text-center" key={table?._id}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{table?.title}</td>
-                                    <td>{table?.priority}</td>
+                                    <td className={`${table?.priority === 'High' ? 'text-danger' : table?.priority === 'Low' ? 'text-success' : table?.priority === 'Medium' ? 'text-primary' : ""} `}>{table?.priority}</td>
                                     <td>{table?.status}</td>
                                     <td ><FaCheck /></td>
                                     <td ><BsPencilSquare /></td>
@@ -41,7 +46,7 @@ const Tasks = () => {
                         }
                     </tbody>
                 </table>
-            </div>
+            </div >
         </>
     );
 };
