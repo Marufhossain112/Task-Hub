@@ -8,6 +8,7 @@ import {
 import Layout from './Layout.jsx';
 import Tasks from './pages/Tasks/Tasks.jsx';
 import CreateTask from './pages/CreateTask/CreateTask.jsx';
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -27,5 +28,7 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <div><Toaster position="bottom-right"
+      reverseOrder={true} /></div>
     <RouterProvider router={router} />
   </React.StrictMode>);

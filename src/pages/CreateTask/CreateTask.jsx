@@ -2,9 +2,10 @@ import { useState } from "react";
 import "./CreateTask.css";
 import { useForm } from "react-hook-form";
 import { PROTOCOL_HOST } from "../../utils/url";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 const CreateTask = () => {
     const [priority, setPriority] = useState("Set priority");
+    
     const {
         register,
         handleSubmit,
@@ -41,8 +42,7 @@ const CreateTask = () => {
     };
     return (
         <>
-            <div><Toaster position="bottom-right"
-                reverseOrder={true} /></div>
+         
 
             <h3 className="text-center mt-5">Create task</h3>
             <div className="container create-task-container">

@@ -5,8 +5,42 @@ import { MdDelete } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa";
 import Loader from "../../Components/Loader/Loader";
+import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 const Tasks = () => {
+    const [tasks, setTasks] = useState([]);
     const { data, loading } = useFetch(`${PROTOCOL_HOST}/task/all-tasks`);
+    useEffect(() => {
+        if (!loading) {
+            setTasks(data);
+        }
+    }, [data, loading]);
+    const handleCompleted = (taskId) => {
+        console.log("🚀 task id", taskId);
+        const updateData = { status: 'Completed' };
+        fetch(`${PROTOCOL_HOST}/task/update-task/${taskId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updateData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    const updatedTasks = tasks.map(task => {
+                        if (task._id === taskId) {
+                            return { ...task, status: 'Completed' };
+                        }
+                        return task;
+                    });
+                    setTasks(updatedTasks);
+                    toast.success('Task completed successfully');
+                }
+            })
+            .catch(error => {
+                console.log("🚀 error", error);
+            });
+    };
     if (loading) {
         return (
             <Loader />
@@ -32,13 +66,17 @@ const Tasks = () => {
                     <tbody>
 
                         {
-                            data?.map((table, index) => (
+                            tasks?.map((table, index) => (
                                 <tr className="text-center" key={table?._id}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{table?.title}</td>
                                     <td className={`${table?.priority === 'High' ? 'text-danger' : table?.priority === 'Low' ? 'text-success' : table?.priority === 'Medium' ? 'text-primary' : ""} `}>{table?.priority}</td>
                                     <td>{table?.status}</td>
-                                    <td ><FaCheck /></td>
+                                    <td onClick={() => handleCompleted(table?._id)}>
+                                        {
+                                            table?.status === 'Not Completed' && <FaCheck />
+                                        }
+                                    </td>
                                     <td ><BsPencilSquare /></td>
                                     <td><AiOutlineDelete /></td>
                                 </tr>
