@@ -9,8 +9,9 @@ import { useEffect, useState } from "react";
 import EditTask from "../../Components/EditTask/EditTask";
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
+    const [filter, setFilter] = useState("");
     const [editTask, setEditTask] = useState({});
-    const { data, loading } = useFetch(`${PROTOCOL_HOST}/task/all-tasks`);
+    const { data, loading } = useFetch(`${PROTOCOL_HOST}/task/all-tasks?priority=${filter}`);
     useEffect(() => {
         if (!loading) {
             setTasks(data);
@@ -82,9 +83,22 @@ const Tasks = () => {
     return (
         <>
             <h3 className="text-center mt-4">All tasks</h3>
-            <div className="d-flex flex-column container mb-3" >
-                <span>Total tasks : {tasks.length}</span>
-                <span>Completed tasks : {completedTasks.length}</span>
+            <div className="container d-flex justify-content-between">
+                <div className="d-flex flex-column  mb-3" >
+                    <span>Total tasks : {tasks.length}</span>
+                    <span>Completed tasks : {completedTasks.length}</span>
+                </div>
+                <div className="d-flex gap-2">
+                    <span className="fw-bold">
+                        Priority :
+                    </span>
+                    <div className="d-flex gap-2">
+                        <span className="text-success" onClick={() => setFilter("Low")}>Low</span>
+                        <span className="text-primary" onClick={() => setFilter("Medium")}>Medium</span>
+                        <span className="text-danger" onClick={() => setFilter("High")}>High</span>
+                    </div>
+                </div>
+
             </div>
             <div className="container">
                 <table className="table table-hover">
