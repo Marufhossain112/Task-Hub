@@ -15,10 +15,10 @@ const Header = () => {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item d-flex ">
                                 <Link className="nav-link active" aria-current="page" to={'/'}>
-                                    Home
-                                </Link>
-                                <Link className="nav-link active" aria-current="page" to={'/tasks'}>
                                     Tasks
+                                </Link>
+                                <Link className="nav-link active" aria-current="page" to={'/create-task'}>
+                                    Create
                                 </Link>
                             </li>
                         </ul>

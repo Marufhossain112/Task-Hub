@@ -6,8 +6,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Layout from './Layout.jsx';
-import Home from './pages/Home/Home.jsx';
 import Tasks from './pages/Tasks/Tasks.jsx';
+import CreateTask from './pages/CreateTask/CreateTask.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,11 +16,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Tasks />,
       },
       {
-        path: "/tasks",
-        element: <Tasks />,
+        path: "/create-task",
+        element: <CreateTask />,
       }
     ]
   },
