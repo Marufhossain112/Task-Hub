@@ -68,6 +68,10 @@ const Tasks = () => {
         setTasks(updatedTasks);
     };
 
+    const completedTasks = tasks.filter((task) => (
+        task.status === 'Completed'
+    ));
+
 
     if (loading) {
         return (
@@ -78,6 +82,10 @@ const Tasks = () => {
     return (
         <>
             <h3 className="text-center mt-4">All tasks</h3>
+            <div className="d-flex flex-column container mb-3" >
+                <span>Total tasks : {tasks.length}</span>
+                <span>Completed tasks : {completedTasks.length}</span>
+            </div>
             <div className="container">
                 <table className="table table-hover">
                     <thead>
