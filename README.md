@@ -25,3 +25,32 @@ URL -  https://task-hub-blush.vercel.app
 - They are empowered to seamlessly edit the data associated with existing tasks.
 - Users have the freedom to create an unlimited number of tasks according to their preferences.
 
+
+## How to run locally
+
+At first, clone the project running below command
+
+```bash
+ git clone https://github.com/Marufhossain112/Task-Hub.git
+```
+
+
+After cloning, navigate to inside the project
+
+```bash
+  cd Task-Hub
+```
+
+Then run
+
+```bash
+  npm install
+```
+
+After installing, run below command
+
+```bash
+  npm run dev
+```
+
+#### Boom !!! Your project is successfully running locally.
